@@ -10,7 +10,7 @@
     }
   },
   "host": "localhost:5050",
-  "basePath": "/api/v1/",
+  "basePath": "/",
   "tags": [
     {
       "name": "Auth",
@@ -37,25 +37,32 @@
   "paths": {
     "/auth/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "Login to the system",
-        "parameters": [{
-          "name": "auth",
-          "in": "body",
-          "description": "User auth details",
-          "schema": {
-            "type": "object",
-            "required": ["username", "password"],
-            "properties": {
-              "username": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
+        "parameters": [
+          {
+            "name": "auth",
+            "in": "body",
+            "description": "User auth details",
+            "schema": {
+              "type": "object",
+              "required": [
+                "username",
+                "password"
+              ],
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
               }
             }
           }
-        }],
+        ],
         "produces": [
           "application/json"
         ],
@@ -68,25 +75,31 @@
     },
     "/auth/register": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "Register to the system",
-        "parameters": [{
-          "name": "auth",
-          "in": "body",
-          "description": "User details",
-          "schema": {
-            "type": "object",
-            "required": ["email"],
-            "properties": {
-              "email": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
+        "parameters": [
+          {
+            "name": "auth",
+            "in": "body",
+            "description": "User details",
+            "schema": {
+              "type": "object",
+              "required": [
+                "email"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                }
               }
             }
           }
-        }],
+        ],
         "produces": [
           "application/json"
         ],

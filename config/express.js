@@ -30,9 +30,9 @@ var distDir = '../../dist/';
 // });
 
 app.use(express.static(path.join(__dirname, distDir)));
-app.use(/^((?!(api)).)*/, (req, res) => {
-    res.status(200).json({message: 'Pragati Application is running'});
-});
+// app.use(/^((?!(api)).)*/, (req, res) => {
+//   res.status(200).json({ message: 'Server is running' });
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,10 +45,10 @@ app.use(methodOverride());
 app.use(helmet());
 
 app.use(session({
-    secret: config.jwtSecret,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { httpOnly: true } // Set HttpOnly attribute for the session cookie
+  secret: config.jwtSecret,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { httpOnly: true } // Set HttpOnly attribute for the session cookie
 }));
 
 
@@ -58,16 +58,20 @@ app.use(passport.session());
 
 
 // enable CORS - Cross Origin Resource Sharing
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5050/'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}));
 
 // API router
-app.use('/api/v1/', routes);
+app.use('/', routes);
 
 // Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-
+app.use(express.static(path.join(__dirname, distDir)));
 // catch 404 and forward to error handler
+
 app.use((req, res, next) => {
   const err = new httpError(404);
   return next(err);

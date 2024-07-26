@@ -2,7 +2,7 @@ var fs = require('fs');
 function getUserHome() {
   return process.env[process.platform === 'win32' ? 'USERPROFILE' : 'HOME'];
 }
-var serverConfigPath = getUserHome() + '/api-config.json';
+var serverConfigPath = getUserHome() + '/devlopment/DealHub/CodeBase/Dealhub_qa-main/config/config.js';
 console.log(serverConfigPath)
 
 var selectedConfigPath;
@@ -15,6 +15,6 @@ if (fs.existsSync(serverConfigPath)) {
 }
 
 var finalJSONConfig = JSON.parse(fs.readFileSync(selectedConfigPath));
-finalJSONConfig.jwtSecret = 'pragati';
+finalJSONConfig.jwtSecret = 'Mahindra';
 
 module.exports = finalJSONConfig;

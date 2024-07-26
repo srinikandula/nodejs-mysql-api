@@ -17,19 +17,19 @@ const sequelize = new Sequelize(`mysql://${config.mysql.DB_USER}:${config.mysql.
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Pragati database Connection has been established successfully.')
+    console.log('database Connection has been established successfully.')
   })
   .catch(err => {
-    console.error('Unable to connect to Pragati database:', err)
+    console.error('Unable to connect to database:', err)
   })
-
-const db = {}
-
-db.sequelize = sequelize
-db.Sequelize = Sequelize
 
 // Models/tables
 
-db.salesCRM = require('../models/welcomeModel')(sequelize, Sequelize);
-db.userModel = require('../models/userModel')(sequelize, Sequelize);
-module.exports = db
+const AuthenticationParameters = require('../models/Authentication/authenticationParameters')(sequelize);
+
+const AuthenticationDetail = require('../models/Authentication/authenticationDetailParameters')(sequelize);
+module.exports = {
+  sequelize,
+  AuthenticationParameters,
+  AuthenticationDetail,
+};
