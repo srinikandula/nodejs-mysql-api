@@ -1,0 +1,11 @@
+name: Check this out
+on: workflow_dispatch
+jobs:
+  print-greeting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+      run: echo "Hello!!"
+      - name : Say Bye
+      run: echo "Bye bye"
+      
